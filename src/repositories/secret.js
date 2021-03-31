@@ -1,7 +1,13 @@
 const secretModel = require('../models/secret')
 
-const create = async data => secretModel.create(data)
+const create = data => secretModel.create(data)
+
+const findAll = () => secretModel.find()
+
+const findById = id => secretModel.findById(id)
 
 module.exports = {
-  create
+  create,
+  findAll,
+  findById
 }
