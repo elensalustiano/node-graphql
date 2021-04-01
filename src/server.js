@@ -2,6 +2,7 @@
 const { ApolloServer } = require('apollo-server')
 const { loadFiles } = require('graphql-import-files')
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 const resolvers = require('./resolvers')
 
