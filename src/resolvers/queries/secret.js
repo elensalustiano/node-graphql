@@ -1,4 +1,4 @@
-const secretRepository = require('../../repositories/secret')
+const secretRepository = require('../../repositories/user')
 
 const secrets = () => secretRepository.findAll()
 

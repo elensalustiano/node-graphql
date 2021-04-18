@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 const resolvers = require('./resolvers')
+const context = require('./auth/context')
 
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.im8i7.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
@@ -20,7 +21,8 @@ mongoose.connect(
 // definition and your set of resolvers.
 const server = new ApolloServer({
   typeDefs: loadFiles('**/schemas/**/*.{graphql,gql}'),
-  resolvers
+  resolvers,
+  context
 })
 
 // The `listen` method launches a web server.

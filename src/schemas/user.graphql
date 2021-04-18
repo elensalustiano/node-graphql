@@ -1,16 +1,25 @@
 type Secret {
   id: ID!
   title: String!
-  user: String
+  accessName: String
   secret: String!
 }
 
+type User {
+  id: ID!
+  userName: String!
+  secrets: [Secret]
+  token: String!
+}
+
 type Query {
+  user(userName: String!, password: String!): User
   secrets: [Secret!]!
   secret(id: ID!): Secret
 }
 
 type Mutation {
+  createUser(userName: String!, password: String!): User
   createSecret(title: String!, secret: String!, user: String): Secret
   deleteSecret(id: ID!): Secret
 }
