@@ -1,13 +1,13 @@
 type Secret {
   id: ID!
-  title: String!
+  title: String
   accessName: String
-  secret: String!
+  secret: String
 }
 
 type User {
   id: ID!
-  userName: String!
+  userName: String
   secrets: [Secret]
   token: String!
 }
@@ -20,6 +20,6 @@ type Query {
 
 type Mutation {
   createUser(userName: String!, password: String!): User
-  createSecret(title: String!, secret: String!, user: String): Secret
-  deleteSecret(id: ID!): Secret
+  createSecret(title: String!, secret: String!, accessName: String): String
+  deleteSecret(id: ID!): String
 }

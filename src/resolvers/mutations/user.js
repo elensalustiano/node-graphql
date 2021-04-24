@@ -16,6 +16,26 @@ const createUser = async (_, args) => {
   }
 }
 
+const createSecret = async (_, args, context) => {
+  context && context.validateUser()
+
+  const { nModified } = await userRepository.addSecret(context.user._id, args)
+  if (!nModified) throw Error(`Error to register secret ${args.title}`)
+
+  return `Success to register secret ${args.title}`
+}
+
+const deleteSecret = async (_, { id }, context) => {
+  context && context.validateUser()
+
+  const { nModified } = await userRepository.deleteSecret(context.user._id, id)
+  if (!nModified) throw Error(`Error to delete secret with id ${id}`)
+
+  return `Success to delete secret with id ${id}`
+}
+
 module.exports = {
-  createUser
+  createUser,
+  createSecret,
+  deleteSecret
 }

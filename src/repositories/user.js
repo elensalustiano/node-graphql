@@ -6,11 +6,20 @@ const findOne = userName => userModel.findOne({ userName })
 
 const findById = id => userModel.findById(id)
 
-const deleteById = id => userModel.deleteOne({ _id: id })
+const addSecret = (userId, secret) => userModel.updateOne(
+  { _id: userId },
+  { $push: { secrets: secret } }
+)
+
+const deleteSecret = (userId, secretId) => userModel.updateOne(
+  { _id: userId },
+  { $pull: { secrets: { _id: secretId } } }
+)
 
 module.exports = {
   createUser,
   findOne,
   findById,
-  deleteById
+  addSecret,
+  deleteSecret
 }
